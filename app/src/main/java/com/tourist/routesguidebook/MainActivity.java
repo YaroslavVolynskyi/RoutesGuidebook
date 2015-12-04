@@ -2,36 +2,61 @@ package com.tourist.routesguidebook;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import com.mapbox.mapboxsdk.constants.Style;
+import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.mapbox.mapboxsdk.views.MapView;
 
 public class MainActivity extends ActionBarActivity {
+
+    private MapView mapView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.map_fragment);
+
+        mapView = (MapView) findViewById(R.id.mapview);
+        mapView.setStyleUrl(Style.MAPBOX_STREETS);
+        mapView.setCenterCoordinate(new LatLng(48.54750, 24.11032));
+        mapView.setZoomLevel(11);
+        mapView.onCreate(savedInstanceState);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    protected void onStart() {
+        super.onStart();
+        mapView.onStart();
+//        Fragment mapFragment = new MapFragment();
+//        getSupportFragmentManager().beginTransaction().replace(R.id.main_container, mapFragment).commit();
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    protected void onStop() {
+        super.onStop();
+        mapView.onStop();
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+    @Override
+    public void onPause()  {
+        super.onPause();
+        mapView.onPause();
+    }
 
-        return super.onOptionsItemSelected(item);
+    @Override
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mapView.onSaveInstanceState(outState);
     }
 }

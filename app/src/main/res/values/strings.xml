@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">RoutesGuidebook</string>
     <string name="action_settings">Settings</string>
+    <string name="accesstoken">pk.eyJ1IjoiYm95NHVjayIsImEiOiJkWlgxdVhRIn0.nzy-n4qIL6QNPiWtTO_UTw</string>
 </resources>

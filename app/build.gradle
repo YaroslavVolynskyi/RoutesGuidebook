@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 20
+    compileSdkVersion 23
     buildToolsVersion "20.0.0"
 
     defaultConfig {
         applicationId "com.tourist.routesguidebook"
         minSdkVersion 15
-        targetSdkVersion 20
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
@@ -19,8 +19,15 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:20.0.0'
+    compile 'com.android.support:appcompat-v7:23.1.0'
+    compile('com.mapbox.mapboxsdk:mapbox-android-sdk:2.2.0@aar') {
+        transitive = true
+    }
 }
